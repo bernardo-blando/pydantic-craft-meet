@@ -10,9 +10,12 @@ authors = [
 dependencies = [
     "pydantic>=2.10.0",
     "pydantic-settings>=2.6.0",
+    "python-dotenv>=1.0.0",
 
     "fastapi[standard]>=0.115.0",
 
+    # For Gemini structured outputs (Unit 8)
+    "google-genai>=1.0.0",
 ]
 
 
@@ -38,7 +41,7 @@ build-backend = "hatchling.build"
 
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pydantic_craft_meet", "src/app"]
+packages = ["units"]
 
 
 # =============================================================================
@@ -47,7 +50,7 @@ packages = ["src/pydantic_craft_meet", "src/app"]
 [tool.ruff]
 line-length = 88
 target-version = "py313"
-src = ["src", "tests"]
+src = ["units"]
 
 [tool.ruff.lint]
 select = [
@@ -94,12 +97,18 @@ ignore = [
 [tool.ruff.lint.per-file-ignores]
 # Allow assert in tests
 "tests/**/*" = ["S101", "ARG", "PLR2004"]
+# Allow assert in unit tests
+"units/**/test_*.py" = ["S101", "ARG", "PLR2004", "PLC0415"]
+# Allow common patterns in training exercises and solutions
+"units/**/*.py" = ["PLR2004", "PLC0415", "PLR0912", "PLW2901", "UP046", "UP042", "PLW0603", "PLW0602", "B008", "E721", "F841"]
+# Allow incomplete code, unused imports in exercises
+"units/**/exercise.py" = ["ERA001", "ARG", "B018", "F401", "F841", "W605"]
 # Allow unused imports in __init__.py
 "__init__.py" = ["F401"]
 
 [tool.ruff.lint.isort]
 
-known-first-party = ["pydantic_craft_meet", "app"]
+known-first-party = ["units"]
 
 
 [tool.ruff.lint.pylint]
@@ -128,16 +137,20 @@ warn_redundant_casts = true
 warn_unused_configs = true
 
 [[tool.mypy.overrides]]
-module = "tests.*"
+module = "units.*"
+# Training code demonstrates Pydantic features (type coercion, aliases, computed fields)
+# that mypy doesn't understand well, so we disable strict checking
 disallow_untyped_defs = false
 disallow_incomplete_defs = false
+ignore_missing_imports = true
+ignore_errors = true
 
 
 # =============================================================================
 # Pytest Configuration
 # =============================================================================
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["units"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
@@ -155,7 +168,7 @@ markers = [
 # Coverage Configuration
 # =============================================================================
 [tool.coverage.run]
-source = ["src"]
+source = ["units"]
 branch = true
 omit = ["*/tests/*", "*/__init__.py"]
 

@@ -14,7 +14,7 @@ repos:
 
   # Ruff - linting and formatting
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.8.3
+    rev: v0.15.6
     hooks:
       # Run the linter
       - id: ruff
@@ -27,7 +27,7 @@ repos:
     hooks:
       - id: mypy
         name: mypy
-        entry: .venv/bin/mypy src
+        entry: .venv/bin/mypy units
         language: system
         types: [python]
         pass_filenames: false
