@@ -60,7 +60,20 @@ Create module-level functions:
 
 1. Open `exercise.py`
 2. Complete all models and functions
-3. Run tests with: `pytest units/unit_06_serialization/test_solution.py -v`
+3. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example6
+
+# Run the tests to verify your solution
+make test6
+
+# Run the solution (if you want to see the answer)
+make solution6
+```
 
 ## Hints
 

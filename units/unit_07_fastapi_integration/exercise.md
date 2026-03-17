@@ -74,8 +74,21 @@ Same fields as BookCreate plus:
 1. Open `exercise.py`
 2. Complete all Pydantic models
 3. Implement all API endpoints
-4. Run tests with: `pytest units/unit_07_fastapi_integration/test_solution.py -v`
-5. Test manually: `uvicorn units.unit_07_fastapi_integration.exercise:app --reload`
+4. Run the tests to verify your solution
+5. Test manually by starting the API server
+
+## Commands
+
+```bash
+# Start the FastAPI server (for manual testing)
+make run-api
+
+# Run the tests to verify your solution
+make test7
+
+# View OpenAPI docs (after starting the server)
+open http://localhost:8000/docs
+```
 
 ## Hints
 

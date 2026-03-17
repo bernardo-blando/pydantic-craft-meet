@@ -56,7 +56,20 @@ Create a `PasswordReset` model with the following:
 1. Open `exercise.py`
 2. Complete the `PasswordReset` class
 3. Implement all validators and computed fields
-4. Run tests with: `pytest units/unit_04_custom_validators/test_solution.py -v`
+4. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example4
+
+# Run the tests to verify your solution
+make test4
+
+# Run the solution (if you want to see the answer)
+make solution4
+```
 
 ## Hints
 

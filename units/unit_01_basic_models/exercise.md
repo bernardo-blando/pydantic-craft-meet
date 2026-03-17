@@ -23,7 +23,20 @@ Create a `Product` model with the following fields:
 1. Open `exercise.py`
 2. Complete the `Product` class by adding the required fields
 3. Implement the `calculate_total_value()` method
-4. Run the tests with: `pytest units/unit_01_basic_models/test_solution.py -v`
+4. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example1
+
+# Run the tests to verify your solution
+make test1
+
+# Run the solution (if you want to see the answer)
+make solution1
+```
 
 ## Hints
 

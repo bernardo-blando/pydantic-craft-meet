@@ -54,7 +54,20 @@ Add these methods to the `Blog` model:
 1. Open `exercise.py`
 2. Complete all four model classes
 3. Implement the helper methods on `Blog`
-4. Run tests with: `pytest units/unit_03_nested_models/test_solution.py -v`
+4. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example3
+
+# Run the tests to verify your solution
+make test3
+
+# Run the solution (if you want to see the answer)
+make solution3
+```
 
 ## Hints
 

@@ -61,7 +61,20 @@ Fields:
 
 1. Open `exercise.py`
 2. Complete all three model classes
-3. Run tests with: `pytest units/unit_05_model_config/test_solution.py -v`
+3. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example5
+
+# Run the tests to verify your solution
+make test5
+
+# Run the solution (if you want to see the answer)
+make solution5
+```
 
 ## Hints
 

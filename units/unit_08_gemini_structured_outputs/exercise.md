@@ -49,19 +49,25 @@ Implement `extract_meeting_notes(text: str) -> ExtractionResult[MeetingNotes]`:
 2. Calls Gemini API with structured output schema
 3. Returns extracted MeetingNotes or error information
 
-### Part 3: Create Mock Function
-
-Implement `extract_meeting_notes_mock(text: str) -> ExtractionResult[MeetingNotes]`:
-
-1. Provides basic extraction without API calls
-2. Useful for testing and development
-
 ## Steps
 
 1. Open `exercise.py`
 2. Complete all Pydantic models
-3. Implement the extraction functions
-4. Run tests with: `pytest units/unit_08_gemini_structured_outputs/test_solution.py -v`
+3. Implement the extraction function
+4. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example (requires GEMINI_API_KEY environment variable)
+make example8
+
+# Run the tests to verify your solution
+make test8
+
+# Run the solution (requires GEMINI_API_KEY environment variable)
+make solution8
+```
 
 ## Hints
 
@@ -99,36 +105,6 @@ response = model.generate_content(
         response_schema=MeetingNotes,
     ),
 )
-```
-
-### Simple mock extraction:
-```python
-def extract_meeting_notes_mock(text: str) -> ExtractionResult[MeetingNotes]:
-    # Parse key information from text
-    lines = text.strip().split('\n')
-
-    # Find title (usually first line or after "Meeting:")
-    title = "Team Meeting"  # Default
-    for line in lines:
-        if line.strip():
-            title = line.strip()
-            break
-
-    # Build mock data
-    mock_data = {
-        "title": title,
-        "summary": "Meeting discussed team updates and next steps.",
-        "key_points": ["Team updates", "Project status"],
-        "participants": [],
-        "action_items": [],
-        "decisions": [],
-        "next_steps": [],
-    }
-
-    # Parse for names, action items, etc.
-    ...
-
-    return ExtractionResult(success=True, data=MeetingNotes.model_validate(mock_data))
 ```
 
 ## Expected Behavior

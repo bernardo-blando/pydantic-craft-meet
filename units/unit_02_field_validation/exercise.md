@@ -24,7 +24,20 @@ Create a `BankAccount` model with the following fields and constraints:
 1. Open `exercise.py`
 2. Complete the `BankAccount` class by adding all fields with proper constraints
 3. Add helpful descriptions to each field using the `description` parameter
-4. Run the tests with: `pytest units/unit_02_field_validation/test_solution.py -v`
+4. Run the tests to verify your solution
+
+## Commands
+
+```bash
+# Run the example to see expected behavior
+make example2
+
+# Run the tests to verify your solution
+make test2
+
+# Run the solution (if you want to see the answer)
+make solution2
+```
 
 ## Hints
 
