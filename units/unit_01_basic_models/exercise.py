@@ -49,39 +49,31 @@ class Product(BaseModel):
 
 def main() -> None:
     """Test your implementation."""
-    # TODO: Uncomment and test once you complete the model
+    # Create a product
+    product = Product(sku="LAPTOP-001", name="Gaming Laptop", price=999.99, quantity=10)
 
-    # # Create a product
-    # product = Product(
-    #     sku="LAPTOP-001",
-    #     name="Gaming Laptop",
-    #     price=999.99,
-    #     quantity=10
-    # )
-    #
-    # print(f"Product: {product.name}")
-    # print(f"SKU: {product.sku}")
-    # print(f"Price: ${product.price}")
-    # print(f"In Stock: {product.quantity}")
-    # print(f"Available: {product.is_available}")
-    # print(f"Total Value: ${product.calculate_total_value()}")
-    # print()
-    #
-    # # Test type coercion
-    # product2 = Product(
-    #     sku="PHONE-001",
-    #     name="Smartphone",
-    #     price="599.99",  # String -> float
-    #     quantity="5"  # String -> int
-    # )
-    # print(f"Price type: {type(product2.price).__name__}")
-    # print(f"Quantity type: {type(product2.quantity).__name__}")
-    # print()
-    #
-    # # Convert to dictionary
-    # data = product.model_dump()
-    # print(f"As dictionary: {data}")
+    print(f"Product: {product.name}")
+    print(f"SKU: {product.sku}")
+    print(f"Price: ${product.price}")
+    print(f"In Stock: {product.quantity}")
+    print(f"Available: {product.is_available}")
+    print(f"Total Value: ${product.calculate_total_value()}")
+    print()
 
+    # Test type coercion
+    product2 = Product(
+        sku="PHONE-001",
+        name="Smartphone",
+        price="599.99",  # String -> float
+        quantity="5",  # String -> int
+    )
+    print(f"Price type: {type(product2.price).__name__}")
+    print(f"Quantity type: {type(product2.quantity).__name__}")
+    print()
+
+    # Convert to dictionary
+    data = product.model_dump()
+    print(f"As dictionary: {data}")
     print("Complete the Product model and uncomment the test code!")
 
 

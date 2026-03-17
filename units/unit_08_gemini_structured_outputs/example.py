@@ -12,8 +12,6 @@ Run with: make example8
 
 import json
 import os
-import re
-from typing import Any
 
 from dotenv import load_dotenv
 from pydantic import BaseModel, Field, ValidationError
@@ -139,84 +137,6 @@ Return ONLY valid JSON, no additional text."""
         )
 
 
-def extract_person_mock(text: str) -> ExtractionResult:
-    """Mock extraction for demonstration without API key.
-
-    This simulates what Gemini would return for common inputs.
-    """
-    # Simple mock extraction based on keywords
-    mock_data: dict[str, Any] = {
-        "name": "Unknown",
-        "summary": "Person mentioned in text",
-        "skills": [],
-    }
-
-    text_lower = text.lower()
-
-    # Extract name (simplified)
-    if "john" in text_lower:
-        mock_data["name"] = "John Smith"
-    elif "alice" in text_lower:
-        mock_data["name"] = "Alice Johnson"
-    elif "sarah" in text_lower:
-        mock_data["name"] = "Sarah Chen"
-
-    # Extract age
-    age_match = re.search(r"(\d+)[\s-]?year", text_lower)
-    if age_match:
-        mock_data["age"] = int(age_match.group(1))
-
-    # Extract occupation
-    occupations = ["engineer", "developer", "manager", "designer", "scientist"]
-    for occ in occupations:
-        if occ in text_lower:
-            mock_data["occupation"] = occ.title()
-            break
-
-    # Extract skills
-    skills = ["python", "javascript", "java", "machine learning", "data science"]
-    mock_data["skills"] = [s.title() for s in skills if s in text_lower]
-
-    # Extract location
-    if "san francisco" in text_lower:
-        mock_data["address"] = {
-            "city": "San Francisco",
-            "country": "USA",
-            "state": "California",
-        }
-    elif "new york" in text_lower:
-        mock_data["address"] = {
-            "city": "New York",
-            "country": "USA",
-            "state": "New York",
-        }
-    elif "london" in text_lower:
-        mock_data["address"] = {"city": "London", "country": "UK"}
-
-    # Generate summary
-    parts = []
-    if mock_data.get("occupation"):
-        parts.append(f"A {mock_data['occupation'].lower()}")
-    if mock_data.get("age"):
-        parts.append(f"aged {mock_data['age']}")
-    if mock_data.get("address"):
-        parts.append(f"based in {mock_data['address']['city']}")
-    mock_data["summary"] = " ".join(parts) if parts else "Person mentioned in text"
-
-    try:
-        person = Person.model_validate(mock_data)
-        return ExtractionResult(
-            success=True,
-            data=person,
-            raw_response=json.dumps(mock_data, indent=2),
-        )
-    except ValidationError as e:
-        return ExtractionResult(
-            success=False,
-            error=f"Mock data validation failed: {e}",
-        )
-
-
 def main() -> None:
     """Demonstrate Gemini structured outputs."""
     # Sample texts to extract from
@@ -245,23 +165,13 @@ def main() -> None:
     print("Gemini Structured Output Demo")
     print("=" * 60)
 
-    # Check for API key
-    api_key = os.getenv("GEMINI_API_KEY")
-    use_mock = not api_key
-
-    if use_mock:
-        print("\nNote: GEMINI_API_KEY not found. Using mock extraction.")
-        print("Set GEMINI_API_KEY to use real Gemini API.\n")
-        extract_func = extract_person_mock
-    else:
-        print("\nUsing Gemini API for extraction.\n")
-        extract_func = extract_person_with_gemini
+    print("\nUsing Gemini API for extraction.\n")
 
     for i, text in enumerate(sample_texts, 1):
         print(f"\n--- Sample {i} ---")
         print(f"Input text: {text[:80].strip()}...")
 
-        result = extract_func(text)
+        result = extract_person_with_gemini(text)
 
         if result.success and result.data:
             print("\nExtracted Person:")

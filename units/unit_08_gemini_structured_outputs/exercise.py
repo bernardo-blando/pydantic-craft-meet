@@ -4,10 +4,10 @@ Your task is to create a system that extracts structured information
 from meeting notes using Gemini and Pydantic models.
 
 Prerequisites:
-1. Set GEMINI_API_KEY environment variable (optional for mock)
+1. Set GEMINI_API_KEY environment variable
 2. Install: pip install google-genai
 
-Run tests: pytest units/unit_08_gemini_structured_outputs/test_solution.py -v
+Run tests: make test8
 """
 
 from typing import Generic, TypeVar
@@ -153,54 +153,6 @@ def extract_meeting_notes(text: str) -> ExtractionResult[MeetingNotes]:
     pass
 
 
-# === Part 3: Mock Extraction ===
-
-
-def extract_meeting_notes_mock(text: str) -> ExtractionResult[MeetingNotes]:
-    """Mock extraction for testing without API key.
-
-    TODO: Implement basic text parsing to extract meeting info.
-    This doesn't need to be sophisticated - just parse what you can.
-
-    Hints:
-    - Look for date patterns
-    - Find names after "Attendees:" or similar
-    - Look for "Action Items:" sections
-    - Parse bullet points as key points
-    """
-    # TODO: Implement mock extraction
-    #
-    # lines = text.strip().split('\n')
-    #
-    # # Find title (first non-empty line)
-    # title = "Team Meeting"
-    # for line in lines:
-    #     if line.strip():
-    #         title = line.strip()
-    #         break
-    #
-    # # Build mock data
-    # mock_data = {
-    #     "title": title,
-    #     "summary": "Meeting discussed various topics.",
-    #     "key_points": [],
-    #     "participants": [],
-    #     "action_items": [],
-    #     "decisions": [],
-    #     "next_steps": [],
-    # }
-    #
-    # # ... parse more from text ...
-    #
-    # try:
-    #     notes = MeetingNotes.model_validate(mock_data)
-    #     return ExtractionResult(success=True, data=notes)
-    # except ValidationError as e:
-    #     return ExtractionResult(success=False, error=str(e))
-
-    pass
-
-
 def main() -> None:
     """Test your implementation."""
     sample_meeting = """
@@ -233,16 +185,10 @@ Next Steps:
     print("Meeting Notes Extraction Exercise")
     print("=" * 60)
 
-    # TODO: Uncomment once you implement the functions
+    # TODO: Uncomment once you implement the function
 
-    # api_key = os.getenv("GEMINI_API_KEY")
-    #
-    # if api_key:
-    #     print("\nUsing Gemini API...")
-    #     result = extract_meeting_notes(sample_meeting)
-    # else:
-    #     print("\nUsing mock extraction (no API key)...")
-    #     result = extract_meeting_notes_mock(sample_meeting)
+    # print("\nUsing Gemini API...")
+    # result = extract_meeting_notes(sample_meeting)
     #
     # if result.success and result.data:
     #     notes = result.data
@@ -264,7 +210,7 @@ Next Steps:
     # else:
     #     print(f"\nExtraction failed: {result.error}")
 
-    print("Complete the models and functions, then uncomment the test code!")
+    print("Complete the models and function, then uncomment the test code!")
 
 
 if __name__ == "__main__":

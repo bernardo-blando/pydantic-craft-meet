@@ -30,13 +30,6 @@ class BookCreate(BaseModel):
     """
 
     # TODO: Add fields
-    # title: str = Field(min_length=1, max_length=200)
-    # author: str = Field(min_length=1, max_length=100)
-    # isbn: str = Field(pattern=r"^\d{13}$")
-    # published_year: int = Field(ge=1000, le=datetime.now().year)
-    # genre: str = Field(min_length=1)
-    # pages: int = Field(ge=1)
-    # description: str | None = Field(default=None, max_length=2000)
 
     pass  # Remove once you add fields
 
@@ -48,8 +41,6 @@ class BookUpdate(BaseModel):
     """
 
     # TODO: Add fields
-    # title: str | None = Field(default=None, min_length=1, max_length=200)
-    # ... etc
 
     pass  # Remove once you add fields
 
